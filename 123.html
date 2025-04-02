@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创新科技 | 引领未来</title>
+    <style>
+        /* 基础样式 */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #f97316;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.2rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            color: var(--gray);
+        }
+        
+        img {
+            max-width: 100%;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        /* 导航栏 */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        
+        /* 英雄部分 */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(79, 70, 229, 0.8)), url('/api/placeholder/1200/800') center/cover no-repeat;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        /* 关于部分 */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+        
+        .about-text, .about-image {
+            flex: 1;
+        }
+        
+        /* 服务部分 */
+        .services {
+            background-color: #f1f5f9;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            margin: 2rem auto;
+            background-color: rgba(37, 99, 235, 0.1);
+            border-radius: 50%;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+        
+        .service-content {
+            padding: 0 2rem 2rem;
+            text-align: center;
+        }
+        
+        /* 团队部分 */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .team-member {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+        
+        .team-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .team-position {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .team-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .team-social a:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        /* 联系部分 */
+        .contact {
+            background-color: #f1f5f9;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .contact-info {
+            margin-bottom: 2rem;
+        }
+        
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(37, 99, 235, 0.1);
+            border-radius: 50%;
+            color: var(--primary);
+            margin-right: 1rem;
+        }
+        
+        .contact-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* 页脚 */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-title {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                transition: var(--transition);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 1.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 页头和导航 -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">创新科技</a>
+                <div class="menu-toggle">&#9776;</div>
+                <ul class="nav-links">
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#about">关于我们</a></li>
+                    <li><a href="#services">服务</a></li>
+                    <li><a href="#team">团队</a></li>
+                    <li><a href="#contact">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 英雄部分 -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>创新驱动未来</h1>
+                <p>我们为企业提供先进的技术解决方案，助力您的业务在数字时代蓬勃发展。通过创新科技，重新定义您的行业标准。</p>
+                <div>
+                    <a href="#services" class="btn">了解服务</a>
+                    <a href="#contact" class="btn btn-secondary">联系我们</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于部分 -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">关于我们</h2>
+                <p>创新科技成立于2015年，致力于为各行业提供尖端技术解决方案</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>我们的愿景</h3>
+                    <p>成为全球领先的技术解决方案提供商，通过创新改变世界。</p>
+                    <h3>我们的使命</h3>
+                    <p>通过前沿技术和卓越服务，帮助企业实现数字化转型，创造可持续的商业价值。</p>
+                    <h3>核心价值观</h3>
+                    <p>创新、诚信、卓越、合作、以客户为中心。</p>
+                </div>
+                <div class="about-image">
+                    <img src="/api/placeholder/600/400" alt="关于我们" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务部分 -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">我们的服务</h2>
+                <p>我们提供全方位的技术解决方案，满足您的各种业务需求</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">①</div>
+                    <div class="service-content">
+                        <h3>数字化转型</h3>
+                        <p>帮助企业实现数字化转型，优化业务流程，提高运营效率，增强市场竞争力。</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">②</div>
+                    <div class="service-content">
+                        <h3>人工智能解决方案</h3>
+                        <p>利用人工智能技术，为企业提供智能决策支持、自动化处理和数据分析服务。</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">③</div>
+                    <div class="service-content">
+                        <h3>云计算服务</h3>
+                        <p>提供安全、可靠、高效的云计算基础设施和平台服务，满足企业的数据存储和计算需求。</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">④</div>
+                    <div class="service-content">
+                        <h3>网络安全</h3>
+                        <p>全面的网络安全解决方案，保护企业数据和系统免受网络威胁和攻击。</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⑤</div>
+                    <div class="service-content">
+                        <h3>物联网平台</h3>
+                        <p>构建连接智能设备的物联网平台，实现设备管理、数据采集和智能控制。</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⑥</div>
+                    <div class="service-content">
+                        <h3>定制软件开发</h3>
+                        <p>根据企业需求定制开发软件系统，提供全生命周期的软件开发服务。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 团队部分 -->
+    <section id="team">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">我们的团队</h2>
+                <p>由行业专家组成的精英团队，为您提供专业服务</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="/api/placeholder/300/300" alt="团队成员" />
+                    <div class="team-info">
+                        <h3>张明</h3>
+                        <div class="team-position">首席执行官</div>
+                        <p>拥有15年技术和管理经验，曾领导多个大型科技项目</p>
+                        <div class="team-social">
+                            <a href="#">W</a>
+                            <a href="#">F</a>
+                            <a href="#">L</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="/api/placeholder/300/300" alt="团队成员" />
+                    <div class="team-info">
+                        <h3>李婷</h3>
+                        <div class="team-position">技术总监</div>
+                        <p>AI和大数据专家，拥有丰富的技术研发和团队管理经验</p>
+                        <div class="team-social">
+                            <a href="#">W</a>
+                            <a href="#">F</a>
+                            <a href="#">L</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="/api/placeholder/300/300" alt="团队成员" />
+                    <div class="team-info">
+                        <h3>王强</h3>
+                        <div class="team-position">产品经理</div>
+                        <p>专注于用户体验和产品设计，曾主导多个成功的产品</p>
+                        <div class="team-social">
+                            <a href="#">W</a>
+                            <a href="#">F</a>
+                            <a href="#">L</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="/api/placeholder/300/300" alt="团队成员" />
+                    <div class="team-info">
+                        <h3>刘洋</h3>
+                        <div class="team-position">客户服务总监</div>
+                        <p>致力于提供卓越的客户服务体验，建立长期客户关系</p>
+                        <div class="team-social">
+                            <a href="#">W</a>
+                            <a href="#">F</a>
+                            <a href="#">L</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系部分 -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">联系我们</h2>
+                <p>随时联系我们，获取更多信息或咨询服务</p>
+            </div>
+            <div class="contact-grid">
+                <div>
+                    <div class="contact-info">
+                        <div class="contact-detail">
+                            <div class="contact-icon">📍</div>
+                            <div>
+                                <h3>地址</h3>
+                                <p>北京市朝阳区科技园区88号创新大厦15层</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <div class="contact-icon">📞</div>
+                            <div>
+                                <h3>电话</h3>
+                                <p>+86 010-12345678</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <div class="contact-icon">✉️</div>
+                            <div>
+                                <h3>邮箱</h3>
+                                <p>contact@example.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="您的姓名" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="您的邮箱" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="主题">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="您的留言" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">发送留言</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3 class="footer-title">创新科技</h3>
+                    <p>提供前沿的技术解决方案，助力企业数字化转型。</p>
+                </div>
+                <div>
+                    <h3 class="footer-title">快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#about">关于我们</a></li>
+                        <li><a href="#services">服务</a></li>
+                        <li><a href="#team">团队</a></li>
+                        <li><a href="#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="footer-title">服务</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">数字化转型</a></li>
+                        <li><a href="#">人工智能解决方案</a></li>
+                        <li><a href="#">云计算服务</a></li>
+                        <li><a href="#">网络安全</a></li>
+                        <li><a href="#">物联网平台</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="footer-title">联系我们</h3>
+                    <ul class="footer-links">
+                        <li>北京市朝阳区科技园区88号创新大厦15层</li>
+                        <li>+86 010-12345678</li>
+                        <li>contact@example.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 创新科技 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 导航菜单切换
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
+        
+        // 滚动时改变导航栏样式
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (header) {
+                if (window.scrollY > 100) {
+                    header.style.padding = '0.5rem 0';
+                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.padding = '1rem 0';
+                    header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                }
+            }
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 关闭移动端菜单
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
